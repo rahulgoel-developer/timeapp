@@ -390,8 +390,8 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .activity-grid {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
             }
             
             .toggle-icon {
@@ -405,29 +405,34 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         }
         
         @media (max-width: 768px) {
+            .activity-card {
+                padding: 1rem;
+                min-height: 110px;
+            }
+            
             .activity-name {
                 font-size: 0.875rem;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.375rem;
             }
             
             .activity-time {
                 font-size: 0.625rem;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.375rem;
             }
             
             .progress-text {
                 font-size: 0.5rem;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.375rem;
             }
             
             .progress-container {
                 height: 8px;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.375rem;
             }
             
             .section-title {
                 font-size: 0.875rem;
-                margin-bottom: 0.75rem;
+                margin-bottom: 0.5rem;
             }
             
             .section-icon {
@@ -438,7 +443,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             
             .card-title {
                 font-size: 0.875rem;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.375rem;
             }
             
             .card-description {
@@ -446,12 +451,12 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             th, td {
-                padding: 0.75rem;
+                padding: 0.625rem;
                 font-size: 0.75rem;
             }
             
             .schedule-header {
-                padding: 0.75rem;
+                padding: 0.625rem;
             }
             
             .schedule-header h3 {
@@ -463,7 +468,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .logout-btn {
-                padding: 0.625rem 1rem;
+                padding: 0.5rem 0.875rem;
                 font-size: 0.75rem;
             }
         }

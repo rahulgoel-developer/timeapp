@@ -14,333 +14,539 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
     <title>Time Tracker Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary-color: #22d3ee;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-light: #94a3b8;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body { 
-            font-family: sans-serif; 
-            margin: 20px; 
-            line-height: 1.6; 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding-bottom: 50px;
-        }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 20px; 
-            margin-bottom: 30px;
-        }
-        th, td { 
-            border: 1px solid #ddd; 
-            padding: 12px; 
-            text-align: left; 
-            word-wrap: break-word;
-        }
-        th { background-color: #f4f4f4; }
-        .form-group { 
-            margin-bottom: 20px; 
-            background: #f9f9f9; 
-            padding: 15px; 
-            border-radius: 5px; 
-        }
-        .success-msg { color: green; font-weight: bold; }
-        
-        .activity-section { margin-bottom: 20px; }
-        .activity-section h4 { margin-bottom: 10px; color: #333; }
-        .button-group { display: flex; flex-wrap: wrap; gap: 10px; }
-        .activity-div { 
-            background-color: #007bff; 
-            color: white; 
-            padding: 20px 18px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-size: 16px;
-            transition: all 0.2s;
-            min-width: 200px;
-            min-height: 120px;
-            text-align: center;
-            border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .activity-div:hover { 
-            background-color: #0056b3; 
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .activity-div:active {
-            background-color: #004085;
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        .activity-name {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .activity-time {
-            font-size: 12px;
-            opacity: 0.9;
+            color: var(--text-primary);
+            line-height: 1.6;
+            position: relative;
         }
         
-        .schedule-container {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-top: 20px;
-            background: white;
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
         }
         
-        .schedule-header {
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Premium Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #ddd;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+        
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+        
+        .logout-btn {
+            background: linear-gradient(135deg, var(--danger-color), #dc2626);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
             cursor: pointer;
-            user-select: none;
-            transition: background-color 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-md);
+            font-size: 0.95rem;
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Premium Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        /* Activity Grid */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .activity-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            pointer-events: none;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .activity-card:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+        
+        .activity-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .activity-time {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Premium Progress Bars */
+        .progress-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-sm);
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: var(--radius-sm);
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .progress-bar.minimal { background: linear-gradient(90deg, var(--danger-color), #dc2626); }
+        .progress-bar.started { background: linear-gradient(90deg, var(--warning-color), #d97706); }
+        .progress-bar.halfway { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+        .progress-bar.almost-complete { background: linear-gradient(90deg, var(--secondary-color), #06b6d4); }
+        .progress-bar.complete { background: linear-gradient(90deg, var(--success-color), #059669); }
+        
+        .progress-text {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.75rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        /* Premium Table */
+        .table-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .schedule-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
         }
         
         .schedule-header:hover {
-            background: #e9ecef;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
         }
         
         .schedule-header h3 {
             margin: 0;
-            color: #333;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
         
         .toggle-icon {
-            font-size: 18px;
-            color: #666;
+            font-size: 1.5rem;
             transition: transform 0.3s ease;
-        }
-        
-        .schedule-content {
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            max-height: 1000px;
-        }
-        
-        .schedule-content.collapsed {
-            max-height: 0;
         }
         
         .toggle-icon.collapsed {
             transform: rotate(-90deg);
         }
         
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background-color: #e9ecef;
-            border-radius: 4px;
-            margin: 8px 0;
+        .schedule-content {
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 2000px;
             overflow: hidden;
         }
         
-        .progress-bar {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.3s ease;
+        .schedule-content.collapsed {
+            max-height: 0;
         }
         
-        .progress-bar.minimal {
-            background-color: #dc3545;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
         }
         
-        .progress-bar.started {
-            background-color: #fd7e14;
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .progress-bar.halfway {
-            background-color: #ffc107;
+        th {
+            background: var(--light-bg);
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         
-        .progress-bar.almost-complete {
-            background-color: #20c997;
+        td {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
         
-        .progress-bar.complete {
-            background-color: #28a745;
+        tr:hover {
+            background: var(--light-bg);
         }
         
-        .progress-text {
-            font-size: 11px;
-            color: #666;
-            margin-top: 2px;
+        /* Success Message */
+        .success-msg {
+            background: linear-gradient(135deg, var(--success-color), #059669);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--radius-lg);
+            margin-top: 1rem;
+            font-weight: 500;
+            text-align: center;
+            box-shadow: var(--shadow-md);
         }
         
-        .activity-div {
-            padding-bottom: 15px;
+        /* Premium Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .activity-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.25rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
         }
         
-        /* Mobile Responsive Design */
         @media (max-width: 768px) {
-            body {
-                margin: 10px;
-                padding-bottom: 30px;
-                font-size: 22px;
+            .container {
+                padding: 1rem;
             }
             
-            h2 {
-                font-size: 36px !important;
-            }
-            
-            .button-group {
+            .header {
                 flex-direction: column;
-                gap: 25px;
+                text-align: center;
+                gap: 1rem;
+                padding: 1.5rem;
             }
             
-            .activity-div {
-                min-width: 100%;
-                min-height: 160px;
-                padding: 25px;
-                font-size: 22px;
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .activity-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .activity-card {
+                padding: 1.25rem;
             }
             
             .activity-name {
-                font-size: 28px;
-                margin-bottom: 15px;
+                font-size: 1.1rem;
             }
             
             .activity-time {
-                font-size: 22px;
-                margin-bottom: 15px;
+                font-size: 0.85rem;
             }
             
             .progress-text {
-                font-size: 20px;
+                font-size: 0.75rem;
             }
             
-            .form-group {
-                padding: 20px;
+            .section-title {
+                font-size: 1.1rem;
             }
             
-            .form-group label {
-                font-size: 26px;
-            }
-            
-            .activity-section h4 {
-                font-size: 32px;
-                margin-bottom: 20px;
-            }
-            
-            table {
-                font-size: 22px;
+            .card-title {
+                font-size: 1.25rem;
             }
             
             th, td {
-                padding: 15px;
+                padding: 0.75rem;
+                font-size: 0.9rem;
             }
             
             .schedule-header {
-                padding: 20px;
+                padding: 1rem;
             }
             
             .schedule-header h3 {
-                font-size: 32px;
-            }
-            
-            .toggle-icon {
-                font-size: 28px;
-            }
-            
-            .success-msg {
-                font-size: 22px;
-            }
-            
-            button[onclick="logout"] {
-                padding: 15px 25px !important;
-                font-size: 22px !important;
+                font-size: 1.1rem;
             }
         }
         
         @media (max-width: 480px) {
-            body {
-                margin: 5px;
-                font-size: 24px;
+            .container {
+                padding: 0.75rem;
             }
             
-            h2 {
-                font-size: 40px !important;
+            .header {
+                padding: 1rem;
             }
             
-            .button-group {
-                gap: 30px;
+            .header h1 {
+                font-size: 1.5rem;
             }
             
-            .activity-div {
-                min-height: 150px;
-                padding: 22px;
-                font-size: 24px;
+            .header .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .activity-card {
+                padding: 1rem;
             }
             
             .activity-name {
-                font-size: 30px;
+                font-size: 1rem;
             }
             
             .activity-time {
-                font-size: 24px;
+                font-size: 0.8rem;
             }
             
             .progress-text {
-                font-size: 22px;
+                font-size: 0.7rem;
             }
             
-            .form-group {
-                padding: 18px;
+            .section-title {
+                font-size: 1rem;
             }
             
-            .form-group label {
-                font-size: 28px;
+            .card-title {
+                font-size: 1.1rem;
             }
             
-            .activity-section h4 {
-                font-size: 34px;
-            }
-            
-            table {
-                font-size: 24px;
+            .card-description {
+                font-size: 0.85rem;
             }
             
             th, td {
-                padding: 12px;
+                padding: 0.5rem;
+                font-size: 0.8rem;
             }
             
             .schedule-header {
-                padding: 18px;
+                padding: 0.75rem;
             }
             
             .schedule-header h3 {
-                font-size: 34px;
+                font-size: 1rem;
             }
             
-            .toggle-icon {
-                font-size: 30px;
-            }
-            
-            .success-msg {
-                font-size: 24px;
-            }
-            
-            button[onclick="logout"] {
-                padding: 18px 28px !important;
-                font-size: 24px !important;
+            .logout-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h2>Log Activity</h2>
-        <button onclick="logout()" style="background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">Logout</button>
-    </div>
-    <div class="form-group">
-        <label>Select Completed Activity:</label>
+    <div class="container">
+        <header class="header">
+            <div>
+                <h1>Time Tracker</h1>
+                <div class="subtitle">Track your daily activities and productivity</div>
+            </div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </header>
         
-        <div class="activity-section">
-            <h4>Daily Activities</h4>
-            <div class="button-group">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Log Activity</h2>
+                <p class="card-description">Select an activity to log your completed work</p>
+            </div>
+            
+            <div class="activity-section">
+                <div class="section-header">
+                    <div class="section-icon">📅</div>
+                    <h3 class="section-title">Daily Activities</h3>
+                </div>
+                <div class="activity-grid">
                 <?php
                 $daily = $conn->query("SELECT id, activity_name, duration_minutes FROM daily_activities");
                 while($row = $daily->fetch_assoc()) {
@@ -373,7 +579,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
                         $progress_color = 'minimal';
                     }
                     
-                    echo "<div class='activity-div' onclick='logActivity(\"daily_{$row['id']}\")'>
+                    echo "<div class='activity-card' onclick='logActivity(\"daily_{$row['id']}\")'>
                             <div class='activity-name'>{$row['activity_name']}</div>
                             <div class='activity-time'>$time_str</div>
                             <div class='progress-container'>
@@ -385,10 +591,13 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
                 ?>
             </div>
         </div>
-        
-        <div class="activity-section">
-            <h4>Office Work</h4>
-            <div class="button-group">
+            
+            <div class="activity-section">
+                <div class="section-header">
+                    <div class="section-icon">💼</div>
+                    <h3 class="section-title">Office Work</h3>
+                </div>
+                <div class="activity-grid">
                 <?php
                 $office = $conn->query("SELECT id, activity_name, duration_minutes FROM office_work_to_do WHERE status != 'completed'");
                 while($row = $office->fetch_assoc()) {
@@ -421,7 +630,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
                         $progress_color = 'minimal';
                     }
                     
-                    echo "<div class='activity-div' onclick='logActivity(\"office_{$row['id']}\")'>
+                    echo "<div class='activity-card' onclick='logActivity(\"office_{$row['id']}\")'>
                             <div class='activity-name'>{$row['activity_name']}</div>
                             <div class='activity-time'>$time_str</div>
                             <div class='progress-container'>
@@ -431,21 +640,19 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
                           </div>";
                 }
                 ?>
+                </div>
             </div>
+            
+            <div id="response"></div>
         </div>
-        
-        <div id="response"></div>
-    </div>
 
-    <hr>
-
-    <div class="schedule-container">
-        <div class="schedule-header" onclick="toggleSchedule()">
-            <h3>Daily Schedule (Since <?php echo APP_START_DATE; ?>)</h3>
-            <span class="toggle-icon" id="scheduleToggle">▼</span>
-        </div>
-        <div class="schedule-content" id="scheduleContent">
-            <table>
+        <div class="table-container">
+            <div class="schedule-header" onclick="toggleSchedule()">
+                <h3>Daily Schedule (Since <?php echo APP_START_DATE; ?>)</h3>
+                <span class="toggle-icon" id="scheduleToggle">▼</span>
+            </div>
+            <div class="schedule-content" id="scheduleContent">
+                <table>
         <thead>
             <tr>
                 <th>Time Range (Duration)</th>
@@ -496,7 +703,8 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             ?>
         </tbody>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 

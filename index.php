@@ -46,6 +46,99 @@
             font-size: 12px;
             opacity: 0.9;
         }
+        
+        .schedule-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+            background: white;
+        }
+        
+        .schedule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+        
+        .schedule-header:hover {
+            background: #e9ecef;
+        }
+        
+        .schedule-header h3 {
+            margin: 0;
+            color: #333;
+        }
+        
+        .toggle-icon {
+            font-size: 18px;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+        
+        .schedule-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        
+        .schedule-content.collapsed {
+            max-height: 0;
+        }
+        
+        .toggle-icon.collapsed {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            margin: 8px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-bar.minimal {
+            background-color: #dc3545;
+        }
+        
+        .progress-bar.started {
+            background-color: #fd7e14;
+        }
+        
+        .progress-bar.halfway {
+            background-color: #ffc107;
+        }
+        
+        .progress-bar.almost-complete {
+            background-color: #20c997;
+        }
+        
+        .progress-bar.complete {
+            background-color: #28a745;
+        }
+        
+        .progress-text {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .activity-div {
+            padding-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -58,7 +151,7 @@
             <h4>Daily Activities</h4>
             <div class="button-group">
                 <?php
-                $daily = $conn->query("SELECT id, activity_name FROM daily_activities");
+                $daily = $conn->query("SELECT id, activity_name, duration_minutes FROM daily_activities");
                 while($row = $daily->fetch_assoc()) {
                     // Calculate today's time investment for this activity
                     $today = date('Y-m-d');
@@ -72,9 +165,30 @@
                     $today_minutes = floor(($today_seconds % 3600) / 60);
                     $time_str = ($today_hours > 0 || $today_minutes > 0) ? "Today: {$today_hours}h {$today_minutes}m" : "Today: 0h 0m";
                     
+                    // Calculate completion percentage
+                    $target_seconds = $row['duration_minutes'] * 60;
+                    $completion_percentage = min(100, round(($today_seconds / $target_seconds) * 100, 1));
+                    
+                    // Determine progress bar color based on completion
+                    if ($completion_percentage >= 100) {
+                        $progress_color = 'complete';
+                    } elseif ($completion_percentage >= 75) {
+                        $progress_color = 'almost-complete';
+                    } elseif ($completion_percentage >= 50) {
+                        $progress_color = 'halfway';
+                    } elseif ($completion_percentage >= 25) {
+                        $progress_color = 'started';
+                    } else {
+                        $progress_color = 'minimal';
+                    }
+                    
                     echo "<div class='activity-div' onclick='logActivity(\"daily_{$row['id']}\")'>
                             <div class='activity-name'>{$row['activity_name']}</div>
                             <div class='activity-time'>$time_str</div>
+                            <div class='progress-container'>
+                                <div class='progress-bar {$progress_color}' style='width: {$completion_percentage}%'></div>
+                            </div>
+                            <div class='progress-text'>{$completion_percentage}% of {$row['duration_minutes']}min target</div>
                           </div>";
                 }
                 ?>
@@ -85,7 +199,7 @@
             <h4>Office Work</h4>
             <div class="button-group">
                 <?php
-                $office = $conn->query("SELECT id, activity_name FROM office_work_to_do WHERE status != 'completed'");
+                $office = $conn->query("SELECT id, activity_name, duration_minutes FROM office_work_to_do WHERE status != 'completed'");
                 while($row = $office->fetch_assoc()) {
                     // Calculate today's time investment for this office work
                     $today = date('Y-m-d');
@@ -99,9 +213,30 @@
                     $today_minutes = floor(($today_seconds % 3600) / 60);
                     $time_str = ($today_hours > 0 || $today_minutes > 0) ? "Today: {$today_hours}h {$today_minutes}m" : "Today: 0h 0m";
                     
+                    // Calculate completion percentage
+                    $target_seconds = $row['duration_minutes'] * 60;
+                    $completion_percentage = min(100, round(($today_seconds / $target_seconds) * 100, 1));
+                    
+                    // Determine progress bar color based on completion
+                    if ($completion_percentage >= 100) {
+                        $progress_color = 'complete';
+                    } elseif ($completion_percentage >= 75) {
+                        $progress_color = 'almost-complete';
+                    } elseif ($completion_percentage >= 50) {
+                        $progress_color = 'halfway';
+                    } elseif ($completion_percentage >= 25) {
+                        $progress_color = 'started';
+                    } else {
+                        $progress_color = 'minimal';
+                    }
+                    
                     echo "<div class='activity-div' onclick='logActivity(\"office_{$row['id']}\")'>
                             <div class='activity-name'>{$row['activity_name']}</div>
                             <div class='activity-time'>$time_str</div>
+                            <div class='progress-container'>
+                                <div class='progress-bar {$progress_color}' style='width: {$completion_percentage}%'></div>
+                            </div>
+                            <div class='progress-text'>{$completion_percentage}% of {$row['duration_minutes']}min target</div>
                           </div>";
                 }
                 ?>
@@ -113,8 +248,13 @@
 
     <hr>
 
-    <h3>Daily Schedule (Since <?php echo APP_START_DATE; ?>)</h3>
-    <table>
+    <div class="schedule-container">
+        <div class="schedule-header" onclick="toggleSchedule()">
+            <h3>Daily Schedule (Since <?php echo APP_START_DATE; ?>)</h3>
+            <span class="toggle-icon" id="scheduleToggle">▼</span>
+        </div>
+        <div class="schedule-content" id="scheduleContent">
+            <table>
         <thead>
             <tr>
                 <th>Time Range (Duration)</th>
@@ -165,7 +305,9 @@
             }
             ?>
         </tbody>
-    </table>
+            </table>
+        </div>
+    </div>
 
     <script>
     function logActivity(activityValue) {
@@ -178,6 +320,14 @@
                 setTimeout(() => { location.reload(); }, 1500);
             }
         });
+    }
+    
+    function toggleSchedule() {
+        const content = document.getElementById('scheduleContent');
+        const toggle = document.getElementById('scheduleToggle');
+        
+        content.classList.toggle('collapsed');
+        toggle.classList.toggle('collapsed');
     }
     </script>
 </body>

@@ -158,7 +158,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         /* Activity Grid */
         .activity-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(6, 1fr);
             gap: 1.5rem;
         }
         
@@ -385,8 +385,8 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .activity-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1.25rem;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
             }
             
             .header h1 {
@@ -419,8 +419,8 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .activity-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
             }
             
             .activity-card {
@@ -515,6 +515,11 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             .activity-card {
                 padding: 1.75rem;
                 min-height: 140px;
+            }
+            
+            .activity-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
             }
             
             .activity-name {

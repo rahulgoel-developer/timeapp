@@ -1,4 +1,12 @@
-<?php include 'config.php'; ?>
+<?php 
+include 'config.php'; 
+
+// Check if user is authenticated
+if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authenticated') {
+    header('Location: login.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,8 +150,10 @@
     </style>
 </head>
 <body>
-
-    <h2>Log Activity</h2>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Log Activity</h2>
+        <button onclick="logout()" style="background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">Logout</button>
+    </div>
     <div class="form-group">
         <label>Select Completed Activity:</label>
         
@@ -328,6 +338,14 @@
         
         content.classList.toggle('collapsed');
         toggle.classList.toggle('collapsed');
+    }
+    
+    function logout() {
+        // Clear the authentication cookie
+        document.cookie = 'timeapp_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        
+        // Redirect to login page
+        window.location.href = 'login.php';
     }
     </script>
 </body>

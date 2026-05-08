@@ -359,7 +359,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         
         td {
             color: var(--text-secondary);
-            font-size: 0.8125rem;
+            font-size: 0.75rem;
         }
         
         tr:hover {
@@ -384,17 +384,90 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
                 padding: 1.5rem;
             }
             
+            .activity-card {
+                padding: 1.25rem;
+                min-height: 120px;
+            }
+            
             .activity-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .toggle-icon {
+                font-size: 1.125rem;
+            }
+            
+            .logout-btn {
+                padding: 0.625rem 1rem;
+                font-size: 0.75rem;
+            }
         }
         
-        .toggle-icon {
-            font-size: 1.125rem;
+        @media (max-width: 768px) {
+            .activity-name {
+                font-size: 0.875rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .activity-time {
+                font-size: 0.625rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .progress-text {
+                font-size: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .progress-container {
+                height: 8px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .section-title {
+                font-size: 0.875rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .section-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 0.625rem;
+            }
+            
+            .card-title {
+                font-size: 0.875rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .card-description {
+                font-size: 0.75rem;
+            }
+            
+            th, td {
+                padding: 0.75rem;
+                font-size: 0.75rem;
+            }
+            
+            .schedule-header {
+                padding: 0.75rem;
+            }
+            
+            .schedule-header h3 {
+                font-size: 0.875rem;
+            }
+            
+            .toggle-icon {
+                font-size: 1rem;
+            }
+            
+            .logout-btn {
+                padding: 0.625rem 1rem;
+                font-size: 0.75rem;
+            }
         }
-        
-        .logout-btn {
-            padding: 0.75rem 1.25rem;
-            font-size: 0.875rem;
-        }
+    </style>
     }
 </style>
 </head>

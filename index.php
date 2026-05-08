@@ -94,7 +94,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         }
         
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 40px;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
@@ -105,7 +105,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         
         .header .subtitle {
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 16px;
             margin-top: 0.25rem;
         }
         
@@ -119,7 +119,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-md);
-            font-size: 0.95rem;
+            font-size: 15px;
         }
         
         .logout-btn:hover {
@@ -143,7 +143,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         }
         
         .card-title {
-            font-size: 1.5rem;
+            font-size: 24px;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
@@ -151,7 +151,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         
         .card-description {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 15px;
         }
         
         /* Activity Grid */
@@ -195,7 +195,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         }
         
         .activity-name {
-            font-size: 1.25rem;
+            font-size: 20px;
             font-weight: 600;
             margin-bottom: 0.5rem;
             position: relative;
@@ -203,7 +203,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         }
         
         .activity-time {
-            font-size: 0.9rem;
+            font-size: 14px;
             opacity: 0.9;
             margin-bottom: 1rem;
             position: relative;
@@ -251,7 +251,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         .progress-bar.complete { background: linear-gradient(90deg, var(--success-color), #059669); }
         
         .progress-text {
-            font-size: 0.8rem;
+            font-size: 13px;
             opacity: 0.9;
             font-weight: 500;
         }
@@ -266,7 +266,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         }
         
         .section-title {
-            font-size: 1.25rem;
+            font-size: 20px;
             font-weight: 600;
             color: var(--text-primary);
             margin: 0;
@@ -282,7 +282,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 0.8rem;
+            font-size: 13px;
         }
         
         /* Premium Table */
@@ -312,12 +312,12 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         
         .schedule-header h3 {
             margin: 0;
-            font-size: 1.25rem;
+            font-size: 20px;
             font-weight: 600;
         }
         
         .toggle-icon {
-            font-size: 1.5rem;
+            font-size: 24px;
             transition: transform 0.3s ease;
         }
         
@@ -351,14 +351,14 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             background: var(--light-bg);
             font-weight: 600;
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
         
         td {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 15px;
         }
         
         tr:hover {
@@ -406,11 +406,11 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .header h1 {
-                font-size: 2.5rem;
+                font-size: 40px;
             }
             
             .header .subtitle {
-                font-size: 1.2rem;
+                font-size: 19px;
             }
             
             .card {
@@ -428,17 +428,17 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .activity-name {
-                font-size: 1.8rem;
+                font-size: 29px;
                 margin-bottom: 1rem;
             }
             
             .activity-time {
-                font-size: 1.4rem;
+                font-size: 22px;
                 margin-bottom: 1rem;
             }
             
             .progress-text {
-                font-size: 1.2rem;
+                font-size: 19px;
                 margin-bottom: 0.5rem;
             }
             
@@ -448,28 +448,28 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 32px;
                 margin-bottom: 1.5rem;
             }
             
             .section-icon {
                 width: 32px;
                 height: 32px;
-                font-size: 1.2rem;
+                font-size: 19px;
             }
             
             .card-title {
-                font-size: 2rem;
+                font-size: 32px;
                 margin-bottom: 1rem;
             }
             
             .card-description {
-                font-size: 1.2rem;
+                font-size: 19px;
             }
             
             th, td {
                 padding: 1rem;
-                font-size: 1.3rem;
+                font-size: 21px;
             }
             
             .schedule-header {
@@ -477,16 +477,16 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .schedule-header h3 {
-                font-size: 1.8rem;
+                font-size: 29px;
             }
             
             .toggle-icon {
-                font-size: 2rem;
+                font-size: 32px;
             }
             
             .logout-btn {
                 padding: 1rem 2rem;
-                font-size: 1.2rem;
+                font-size: 19px;
             }
         }
         
@@ -500,11 +500,11 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .header h1 {
-                font-size: 2.2rem;
+                font-size: 35px;
             }
             
             .header .subtitle {
-                font-size: 1.1rem;
+                font-size: 18px;
             }
             
             .card {
@@ -517,17 +517,17 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .activity-name {
-                font-size: 1.6rem;
+                font-size: 26px;
                 margin-bottom: 0.75rem;
             }
             
             .activity-time {
-                font-size: 1.3rem;
+                font-size: 21px;
                 margin-bottom: 0.75rem;
             }
             
             .progress-text {
-                font-size: 1.1rem;
+                font-size: 18px;
                 margin-bottom: 0.5rem;
             }
             
@@ -537,28 +537,28 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .section-title {
-                font-size: 1.8rem;
+                font-size: 29px;
                 margin-bottom: 1.25rem;
             }
             
             .section-icon {
                 width: 28px;
                 height: 28px;
-                font-size: 1rem;
+                font-size: 16px;
             }
             
             .card-title {
-                font-size: 1.8rem;
+                font-size: 29px;
                 margin-bottom: 0.75rem;
             }
             
             .card-description {
-                font-size: 1.1rem;
+                font-size: 18px;
             }
             
             th, td {
                 padding: 0.8rem;
-                font-size: 1.2rem;
+                font-size: 19px;
             }
             
             .schedule-header {
@@ -566,16 +566,16 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .schedule-header h3 {
-                font-size: 1.6rem;
+                font-size: 26px;
             }
             
             .toggle-icon {
-                font-size: 1.8rem;
+                font-size: 29px;
             }
             
             .logout-btn {
                 padding: 0.8rem 1.5rem;
-                font-size: 1.1rem;
+                font-size: 18px;
             }
         }
     </style>

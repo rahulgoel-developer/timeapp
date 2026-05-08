@@ -471,6 +471,24 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
                 padding: 0.5rem 0.875rem;
                 font-size: 0.75rem;
             }
+            
+            .schedule-header {
+                padding: 0.5rem;
+            }
+            
+            .schedule-header h1 {
+                font-size: 1.125rem;
+            }
+            
+            .header .subtitle {
+                font-size: 0.75rem;
+                margin-top: 0.25rem;
+            }
+            
+            .logout-btn {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.625rem;
+            }
         }
     </style>
     }

@@ -12,6 +12,26 @@
         th { background-color: #f4f4f4; }
         .form-group { margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 5px; }
         .success-msg { color: green; font-weight: bold; }
+        
+        .activity-section { margin-bottom: 20px; }
+        .activity-section h4 { margin-bottom: 10px; color: #333; }
+        .button-group { display: flex; flex-wrap: wrap; gap: 10px; }
+        .activity-btn { 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        .activity-btn:hover { 
+            background-color: #0056b3; 
+        }
+        .activity-btn:active {
+            background-color: #004085;
+        }
     </style>
 </head>
 <body>
@@ -19,21 +39,31 @@
     <h2>Log Activity</h2>
     <div class="form-group">
         <label>Select Completed Activity:</label>
-        <select id="activity_selector">
-            <optgroup label="Daily Activities">
+        
+        <div class="activity-section">
+            <h4>Daily Activities</h4>
+            <div class="button-group">
                 <?php
                 $daily = $conn->query("SELECT id, activity_name FROM daily_activities");
-                while($row = $daily->fetch_assoc()) echo "<option value='daily_{$row['id']}'>{$row['activity_name']}</option>";
+                while($row = $daily->fetch_assoc()) {
+                    echo "<button class='activity-btn' onclick='logActivity(\"daily_{$row['id']}\")'>{$row['activity_name']}</button>";
+                }
                 ?>
-            </optgroup>
-            <optgroup label="Office Work">
+            </div>
+        </div>
+        
+        <div class="activity-section">
+            <h4>Office Work</h4>
+            <div class="button-group">
                 <?php
                 $office = $conn->query("SELECT id, activity_name FROM office_work_to_do WHERE status != 'completed'");
-                while($row = $office->fetch_assoc()) echo "<option value='office_{$row['id']}'>{$row['activity_name']}</option>";
+                while($row = $office->fetch_assoc()) {
+                    echo "<button class='activity-btn' onclick='logActivity(\"office_{$row['id']}\")'>{$row['activity_name']}</button>";
+                }
                 ?>
-            </optgroup>
-        </select>
-        <button onclick="logActivity()">Log Completion</button>
+            </div>
+        </div>
+        
         <div id="response"></div>
     </div>
 
@@ -94,12 +124,11 @@
     </table>
 
     <script>
-    function logActivity() {
-        const val = $('#activity_selector').val();
+    function logActivity(activityValue) {
         $.ajax({
             url: 'ajax.php',
             type: 'POST',
-            data: { action: 'log_activity', data: val },
+            data: { action: 'log_activity', data: activityValue },
             success: function(res) {
                 $('#response').html('<p class="success-msg">' + res + '</p>');
                 setTimeout(() => { location.reload(); }, 1500);

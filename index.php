@@ -16,21 +16,35 @@
         .activity-section { margin-bottom: 20px; }
         .activity-section h4 { margin-bottom: 10px; color: #333; }
         .button-group { display: flex; flex-wrap: wrap; gap: 10px; }
-        .activity-btn { 
+        .activity-div { 
             background-color: #007bff; 
             color: white; 
-            border: none; 
-            padding: 10px 15px; 
+            padding: 12px 15px; 
             border-radius: 5px; 
             cursor: pointer; 
             font-size: 14px;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
+            min-width: 150px;
+            text-align: center;
+            border: 2px solid transparent;
         }
-        .activity-btn:hover { 
+        .activity-div:hover { 
             background-color: #0056b3; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
-        .activity-btn:active {
+        .activity-div:active {
             background-color: #004085;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .activity-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .activity-time {
+            font-size: 12px;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -46,7 +60,22 @@
                 <?php
                 $daily = $conn->query("SELECT id, activity_name FROM daily_activities");
                 while($row = $daily->fetch_assoc()) {
-                    echo "<button class='activity-btn' onclick='logActivity(\"daily_{$row['id']}\")'>{$row['activity_name']}</button>";
+                    // Calculate today's time investment for this activity
+                    $today = date('Y-m-d');
+                    $time_sql = "SELECT SUM(duration_in_seconds) as today_sec FROM activity_log 
+                                 WHERE activity_id = {$row['id']} 
+                                 AND DATE(started_at) = '$today'";
+                    $time_res = $conn->query($time_sql);
+                    $time_data = $time_res->fetch_assoc();
+                    $today_seconds = $time_data['today_sec'] ?? 0;
+                    $today_hours = floor($today_seconds / 3600);
+                    $today_minutes = floor(($today_seconds % 3600) / 60);
+                    $time_str = ($today_hours > 0 || $today_minutes > 0) ? "Today: {$today_hours}h {$today_minutes}m" : "Today: 0h 0m";
+                    
+                    echo "<div class='activity-div' onclick='logActivity(\"daily_{$row['id']}\")'>
+                            <div class='activity-name'>{$row['activity_name']}</div>
+                            <div class='activity-time'>$time_str</div>
+                          </div>";
                 }
                 ?>
             </div>
@@ -58,7 +87,22 @@
                 <?php
                 $office = $conn->query("SELECT id, activity_name FROM office_work_to_do WHERE status != 'completed'");
                 while($row = $office->fetch_assoc()) {
-                    echo "<button class='activity-btn' onclick='logActivity(\"office_{$row['id']}\")'>{$row['activity_name']}</button>";
+                    // Calculate today's time investment for this office work
+                    $today = date('Y-m-d');
+                    $time_sql = "SELECT SUM(duration_in_seconds) as today_sec FROM activity_log 
+                                 WHERE office_work_id = {$row['id']} 
+                                 AND DATE(started_at) = '$today'";
+                    $time_res = $conn->query($time_sql);
+                    $time_data = $time_res->fetch_assoc();
+                    $today_seconds = $time_data['today_sec'] ?? 0;
+                    $today_hours = floor($today_seconds / 3600);
+                    $today_minutes = floor(($today_seconds % 3600) / 60);
+                    $time_str = ($today_hours > 0 || $today_minutes > 0) ? "Today: {$today_hours}h {$today_minutes}m" : "Today: 0h 0m";
+                    
+                    echo "<div class='activity-div' onclick='logActivity(\"office_{$row['id']}\")'>
+                            <div class='activity-name'>{$row['activity_name']}</div>
+                            <div class='activity-time'>$time_str</div>
+                          </div>";
                 }
                 ?>
             </div>

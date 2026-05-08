@@ -1,7 +1,20 @@
 <?php
 include 'config.php';
 
-if (isset($_POST['action']) && $_POST['action'] == 'log_activity') {
+if (isset($_POST['action']) && $_POST['action'] == 'authenticate') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    
+    if ($username === USERNAME && $password === PASSWORD) {
+        // Set authentication cookie
+        $expires = time() + (24 * 60 * 60); // 24 hours
+        setcookie('timeapp_auth', 'authenticated', $expires, '/');
+        
+        echo "success";
+    } else {
+        echo "invalid";
+    }
+} elseif (isset($_POST['action']) && $_POST['action'] == 'log_activity') {
     $raw_data = $_POST['data'];
     $parts = explode('_', $raw_data);
     $type = $parts[0]; // daily or office

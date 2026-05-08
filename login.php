@@ -105,6 +105,7 @@
         <div id="response"></div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -113,22 +114,31 @@
         const password = document.getElementById('password').value;
         const responseDiv = document.getElementById('response');
         
-        // Simulate authentication (in real app, this would be server-side)
-        if (username === '****' && password === '****') {
-            // Set login cookie
-            const expires = new Date();
-            expires.setTime(expires.getTime() + (24 * 60 * 60 * 1000)); // 24 hours
-            document.cookie = 'timeapp_auth=authenticated; expires=' + expires.toUTCString() + '; path=/';
-            
-            responseDiv.innerHTML = '<p class="success-msg">Login successful! Redirecting...</p>';
-            
-            // Redirect to dashboard after 1 second
-            setTimeout(() => {
-                window.location.href = 'index.php';
-            }, 1000);
-        } else {
-            responseDiv.innerHTML = '<p class="error-msg">Invalid username or password</p>';
-        }
+        // Send credentials to server for authentication
+        $.ajax({
+            url: 'ajax.php',
+            type: 'POST',
+            data: { 
+                action: 'authenticate', 
+                username: username, 
+                password: password 
+            },
+            success: function(res) {
+                if (res.trim() === 'success') {
+                    responseDiv.innerHTML = '<p class="success-msg">Login successful! Redirecting...</p>';
+                    
+                    // Redirect to dashboard after 1 second
+                    setTimeout(() => {
+                        window.location.href = 'index.php';
+                    }, 1000);
+                } else {
+                    responseDiv.innerHTML = '<p class="error-msg">Invalid username or password</p>';
+                }
+            },
+            error: function() {
+                responseDiv.innerHTML = '<p class="error-msg">Server error. Please try again.</p>';
+            }
+        });
     });
     </script>
 </body>

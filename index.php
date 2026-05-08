@@ -179,54 +179,128 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             body {
                 margin: 10px;
                 padding-bottom: 30px;
-                font-size: 18px;
+                font-size: 22px;
             }
             
             h2 {
-                font-size: 28px !important;
+                font-size: 36px !important;
             }
             
             .button-group {
                 flex-direction: column;
-                gap: 20px;
+                gap: 25px;
             }
             
             .activity-div {
                 min-width: 100%;
-                min-height: 140px;
-                padding: 20px;
-                font-size: 18px;
+                min-height: 160px;
+                padding: 25px;
+                font-size: 22px;
             }
             
             .activity-name {
-                font-size: 22px;
-                margin-bottom: 12px;
-            }
-            
-            .activity-time {
-                font-size: 18px;
-                margin-bottom: 12px;
-            }
-            
-            .progress-text {
-                font-size: 16px;
-            }
-            
-            .form-group {
-                padding: 15px;
-            }
-            
-            .form-group label {
-                font-size: 20px;
-            }
-            
-            .activity-section h4 {
-                font-size: 24px;
+                font-size: 28px;
                 margin-bottom: 15px;
             }
             
+            .activity-time {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+            
+            .progress-text {
+                font-size: 20px;
+            }
+            
+            .form-group {
+                padding: 20px;
+            }
+            
+            .form-group label {
+                font-size: 26px;
+            }
+            
+            .activity-section h4 {
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+            
             table {
-                font-size: 18px;
+                font-size: 22px;
+            }
+            
+            th, td {
+                padding: 15px;
+            }
+            
+            .schedule-header {
+                padding: 20px;
+            }
+            
+            .schedule-header h3 {
+                font-size: 32px;
+            }
+            
+            .toggle-icon {
+                font-size: 28px;
+            }
+            
+            .success-msg {
+                font-size: 22px;
+            }
+            
+            button[onclick="logout"] {
+                padding: 15px 25px !important;
+                font-size: 22px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                margin: 5px;
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 40px !important;
+            }
+            
+            .button-group {
+                gap: 30px;
+            }
+            
+            .activity-div {
+                min-height: 150px;
+                padding: 22px;
+                font-size: 24px;
+            }
+            
+            .activity-name {
+                font-size: 30px;
+            }
+            
+            .activity-time {
+                font-size: 24px;
+            }
+            
+            .progress-text {
+                font-size: 22px;
+            }
+            
+            .form-group {
+                padding: 18px;
+            }
+            
+            .form-group label {
+                font-size: 28px;
+            }
+            
+            .activity-section h4 {
+                font-size: 34px;
+            }
+            
+            table {
+                font-size: 24px;
             }
             
             th, td {
@@ -234,85 +308,24 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .schedule-header {
-                padding: 15px;
-            }
-            
-            .schedule-header h3 {
-                font-size: 24px;
-            }
-            
-            .toggle-icon {
-                font-size: 24px;
-            }
-            
-            .success-msg {
-                font-size: 18px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                margin: 5px;
-                font-size: 20px;
-            }
-            
-            h2 {
-                font-size: 32px !important;
-            }
-            
-            .activity-div {
-                min-height: 130px;
                 padding: 18px;
-                font-size: 20px;
-            }
-            
-            .activity-name {
-                font-size: 24px;
-            }
-            
-            .activity-time {
-                font-size: 20px;
-            }
-            
-            .progress-text {
-                font-size: 18px;
-            }
-            
-            .form-group {
-                padding: 12px;
-            }
-            
-            .form-group label {
-                font-size: 22px;
-            }
-            
-            .activity-section h4 {
-                font-size: 26px;
-            }
-            
-            table {
-                font-size: 20px;
-            }
-            
-            th, td {
-                padding: 10px;
             }
             
             .schedule-header h3 {
-                font-size: 26px;
+                font-size: 34px;
             }
             
             .toggle-icon {
-                font-size: 26px;
+                font-size: 30px;
             }
             
             .success-msg {
-                font-size: 20px;
+                font-size: 24px;
             }
             
             button[onclick="logout"] {
-                padding: 12px 20px !important;
-                font-size: 18px !important;
+                padding: 18px 28px !important;
+                font-size: 24px !important;
             }
         }
     </style>

@@ -179,51 +179,73 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             body {
                 margin: 10px;
                 padding-bottom: 30px;
+                font-size: 18px;
+            }
+            
+            h2 {
+                font-size: 28px !important;
             }
             
             .button-group {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
             }
             
             .activity-div {
                 min-width: 100%;
-                min-height: 100px;
-                padding: 15px;
-                font-size: 15px;
+                min-height: 140px;
+                padding: 20px;
+                font-size: 18px;
             }
             
             .activity-name {
-                font-size: 16px;
-                margin-bottom: 8px;
+                font-size: 22px;
+                margin-bottom: 12px;
             }
             
             .activity-time {
-                font-size: 13px;
-                margin-bottom: 8px;
+                font-size: 18px;
+                margin-bottom: 12px;
             }
             
             .progress-text {
-                font-size: 12px;
+                font-size: 16px;
             }
             
             .form-group {
-                padding: 10px;
+                padding: 15px;
+            }
+            
+            .form-group label {
+                font-size: 20px;
+            }
+            
+            .activity-section h4 {
+                font-size: 24px;
+                margin-bottom: 15px;
             }
             
             table {
-                font-size: 14px;
+                font-size: 18px;
             }
             
             th, td {
-                padding: 8px;
+                padding: 12px;
             }
             
             .schedule-header {
-                padding: 10px;
+                padding: 15px;
             }
             
             .schedule-header h3 {
+                font-size: 24px;
+            }
+            
+            .toggle-icon {
+                font-size: 24px;
+            }
+            
+            .success-msg {
                 font-size: 18px;
             }
         }
@@ -231,32 +253,66 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         @media (max-width: 480px) {
             body {
                 margin: 5px;
+                font-size: 20px;
+            }
+            
+            h2 {
+                font-size: 32px !important;
             }
             
             .activity-div {
-                min-height: 90px;
-                padding: 12px;
-                font-size: 14px;
+                min-height: 130px;
+                padding: 18px;
+                font-size: 20px;
             }
             
             .activity-name {
-                font-size: 15px;
+                font-size: 24px;
             }
             
             .activity-time {
-                font-size: 12px;
+                font-size: 20px;
             }
             
             .progress-text {
-                font-size: 11px;
+                font-size: 18px;
+            }
+            
+            .form-group {
+                padding: 12px;
+            }
+            
+            .form-group label {
+                font-size: 22px;
+            }
+            
+            .activity-section h4 {
+                font-size: 26px;
             }
             
             table {
-                font-size: 12px;
+                font-size: 20px;
             }
             
             th, td {
-                padding: 6px;
+                padding: 10px;
+            }
+            
+            .schedule-header h3 {
+                font-size: 26px;
+            }
+            
+            .toggle-icon {
+                font-size: 26px;
+            }
+            
+            .success-msg {
+                font-size: 20px;
+            }
+            
+            button[onclick="logout"] {
+                padding: 12px 20px !important;
+                font-size: 18px !important;
             }
         }
     </style>

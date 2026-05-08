@@ -406,7 +406,11 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .header h1 {
-                font-size: 1.75rem;
+                font-size: 2.5rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1.2rem;
             }
             
             .card {
@@ -415,44 +419,74 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             
             .activity-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.5rem;
             }
             
             .activity-card {
-                padding: 1.25rem;
+                padding: 2rem;
+                min-height: 180px;
             }
             
             .activity-name {
-                font-size: 1.1rem;
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
             }
             
             .activity-time {
-                font-size: 0.85rem;
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
             }
             
             .progress-text {
-                font-size: 0.75rem;
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .progress-container {
+                height: 12px;
+                margin-bottom: 1rem;
             }
             
             .section-title {
-                font-size: 1.1rem;
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .section-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1.2rem;
             }
             
             .card-title {
-                font-size: 1.25rem;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .card-description {
+                font-size: 1.2rem;
             }
             
             th, td {
-                padding: 0.75rem;
-                font-size: 0.9rem;
+                padding: 1rem;
+                font-size: 1.3rem;
             }
             
             .schedule-header {
-                padding: 1rem;
+                padding: 1.5rem;
             }
             
             .schedule-header h3 {
-                font-size: 1.1rem;
+                font-size: 1.8rem;
+            }
+            
+            .toggle-icon {
+                font-size: 2rem;
+            }
+            
+            .logout-btn {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
             }
         }
         
@@ -466,61 +500,82 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
             
             .header h1 {
-                font-size: 1.5rem;
+                font-size: 2.2rem;
             }
             
             .header .subtitle {
-                font-size: 0.9rem;
+                font-size: 1.1rem;
             }
             
             .card {
-                padding: 1rem;
+                padding: 1.25rem;
             }
             
             .activity-card {
-                padding: 1rem;
+                padding: 1.75rem;
+                min-height: 160px;
             }
             
             .activity-name {
-                font-size: 1rem;
+                font-size: 1.6rem;
+                margin-bottom: 0.75rem;
             }
             
             .activity-time {
-                font-size: 0.8rem;
+                font-size: 1.3rem;
+                margin-bottom: 0.75rem;
             }
             
             .progress-text {
-                font-size: 0.7rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .progress-container {
+                height: 10px;
+                margin-bottom: 0.75rem;
             }
             
             .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            .section-icon {
+                width: 28px;
+                height: 28px;
                 font-size: 1rem;
             }
             
             .card-title {
-                font-size: 1.1rem;
+                font-size: 1.8rem;
+                margin-bottom: 0.75rem;
             }
             
             .card-description {
-                font-size: 0.85rem;
+                font-size: 1.1rem;
             }
             
             th, td {
-                padding: 0.5rem;
-                font-size: 0.8rem;
+                padding: 0.8rem;
+                font-size: 1.2rem;
             }
             
             .schedule-header {
-                padding: 0.75rem;
+                padding: 1.25rem;
             }
             
             .schedule-header h3 {
-                font-size: 1rem;
+                font-size: 1.6rem;
+            }
+            
+            .toggle-icon {
+                font-size: 1.8rem;
             }
             
             .logout-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.85rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 1.1rem;
             }
         }
     </style>

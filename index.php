@@ -646,7 +646,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
                             <div class='progress-container'>
                                 <div class='progress-bar {$progress_color}' style='width: {$completion_percentage}%'></div>
                             </div>
-                            <div class='progress-text'>{$completion_percentage}% of {$row['duration_minutes']}min target</div>
+                            <div class='progress-text'>{$completion_percentage}% of {$row['duration_minutes']} min target</div>
                           </div>";
                 }
                 ?>

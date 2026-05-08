@@ -14,11 +14,32 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
     <title>Time Tracker Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        body { font-family: sans-serif; margin: 40px; line-height: 1.6; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        body { 
+            font-family: sans-serif; 
+            margin: 20px; 
+            line-height: 1.6; 
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+            margin-bottom: 30px;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 12px; 
+            text-align: left; 
+            word-wrap: break-word;
+        }
         th { background-color: #f4f4f4; }
-        .form-group { margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 5px; }
+        .form-group { 
+            margin-bottom: 20px; 
+            background: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+        }
         .success-msg { color: green; font-weight: bold; }
         
         .activity-section { margin-bottom: 20px; }
@@ -27,14 +48,19 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         .activity-div { 
             background-color: #007bff; 
             color: white; 
-            padding: 12px 15px; 
-            border-radius: 5px; 
+            padding: 20px 18px; 
+            border-radius: 8px; 
             cursor: pointer; 
-            font-size: 14px;
+            font-size: 16px;
             transition: all 0.2s;
-            min-width: 150px;
+            min-width: 200px;
+            min-height: 120px;
             text-align: center;
             border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .activity-div:hover { 
             background-color: #0056b3; 
@@ -146,6 +172,92 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         
         .activity-div {
             padding-bottom: 15px;
+        }
+        
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                margin: 10px;
+                padding-bottom: 30px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .activity-div {
+                min-width: 100%;
+                min-height: 100px;
+                padding: 15px;
+                font-size: 15px;
+            }
+            
+            .activity-name {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .activity-time {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+            
+            .progress-text {
+                font-size: 12px;
+            }
+            
+            .form-group {
+                padding: 10px;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+            
+            .schedule-header {
+                padding: 10px;
+            }
+            
+            .schedule-header h3 {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                margin: 5px;
+            }
+            
+            .activity-div {
+                min-height: 90px;
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .activity-name {
+                font-size: 15px;
+            }
+            
+            .activity-time {
+                font-size: 12px;
+            }
+            
+            .progress-text {
+                font-size: 11px;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 6px;
+            }
         }
     </style>
 </head>

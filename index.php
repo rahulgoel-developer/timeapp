@@ -11,6 +11,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Time Tracker Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>

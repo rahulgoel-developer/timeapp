@@ -491,8 +491,6 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             }
         }
     </style>
-    }
-</style>
 </head>
 <body>
     <!-- ... -->

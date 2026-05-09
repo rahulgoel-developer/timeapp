@@ -166,7 +166,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
             border-radius: var(--radius-lg);
-            padding: 1.5rem;
+            padding: 0.5rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-md);
@@ -198,7 +198,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         .activity-name {
             font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
             position: relative;
             z-index: 1;
         }
@@ -206,7 +206,7 @@ if (!isset($_COOKIE['timeapp_auth']) || $_COOKIE['timeapp_auth'] !== 'authentica
         .activity-time {
             font-size: 0.75rem;
             opacity: 0.9;
-            margin-bottom: 1rem;
+            margin-bottom: 0.3rem;
             position: relative;
             z-index: 1;
         }
